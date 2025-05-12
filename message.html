@@ -1,0 +1,31 @@
+// Fixed credentials
+const VALID_USERNAME = 'Sana_Ashraf';
+const VALID_PASSWORD = '--1=1';
+
+function validateLogin(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+        // Store login state
+        localStorage.setItem('isLoggedIn', 'true');
+        // Redirect to main page
+        window.location.href = 'main.html';
+    } else {
+        alert('Invalid username or password!');
+    }
+}
+
+// Check if user is already logged in
+function checkLoginStatus() {
+    if (window.location.pathname.includes('main.html')) {
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'index.html';
+        }
+    }
+}
+
+// Initialize login check
+checkLoginStatus(); 
